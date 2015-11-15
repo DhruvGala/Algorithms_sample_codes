@@ -13,7 +13,7 @@ class Node{
 	int value;
 	
 	/*
-	 * Default contrustor;
+	 * Default constructor;
 	 */
 	public Node(){
 		left = right = root = null;
@@ -22,7 +22,7 @@ class Node{
 	
 	
 	/*
-	 * Contructor with a parameter value to be included in the nodes.
+	 * Constructor with a parameter value to be included in the nodes.
 	 */
 	public Node(int value){
 		this.value = value;
@@ -86,5 +86,117 @@ class Node{
 
 public class MyBinaryTrees {
 
+	private Node root;
+	
+	
+	/*
+	 * default constructor
+	 */
+	public MyBinaryTrees(){
+		root = null;
+	}
+	
+	
+	/**
+	 * checks if the tree is empty.
+	 * 
+	 * @return
+	 */
+	public boolean isEmpty(){
+		return root == null;
+	}
+	
+	
+	/**
+	 * Inserts the value at the specified node
+	 * @param value
+	 */
+	public void insert(int value){
+		root = insert(root,value);
+	}
+	
+	
+	/**
+	 * recursively adds the value at the node.
+	 * 
+	 * @param thisNode
+	 * @param value
+	 * @return
+	 */
+	private Node insert(Node thisNode,int value){
+		if(thisNode == null){
+			thisNode = new Node(value);
+		}
+		else{
+			if(thisNode.getRight() == null){
+				thisNode.right = insert(thisNode.right, value);
+			}
+			else{
+				thisNode.left = insert(thisNode.left, value);
+			}
+		}
+		return thisNode;
+	}
+	
+	
+	/**
+	 * this method counts the nodes
+	 * @return
+	 */
+	public int countNodes(){
+		return countNodes(root);
+	}
+	
+	
+	/**
+	 * this method recursively counts the node in the tree specified.
+	 * @param thisTree
+	 * @return
+	 */
+	private int countNodes(Node thisTree){
+		if(thisTree == null){
+			return 0;
+		}
+		else{
+			int count = 1;
+			count += countNodes(thisTree.getLeft());
+			count += countNodes(thisTree.getRight());
+			return count;
+		}
+	}
+	
+	
+	/**
+	 * The specified value is searched in the tree
+	 * @param value
+	 * @return
+	 */
+	public boolean search(int value){
+		return search(root,value);
+	}
+	
+	
+	/**
+	 * this method recursively searches for the value in the given tree.
+	 * @param thisTree
+	 * @param value
+	 * @return
+	 */
+	private boolean search(Node thisTree,int value){
+		if(thisTree.getData()==value){
+			return true;
+		}
+		if(thisTree.getLeft() != null){
+			if(search(thisTree.getLeft(),value)){
+				return true;
+			}
+		}
+		if(thisTree.getRight() != null){
+			if(search(thisTree.getRight(), value)){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }
