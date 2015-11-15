@@ -6,6 +6,8 @@
  *
  * log: Version <1.0> constructed the underlying data structure to implement the 
  * 					  In-order,pre-order and post-order traversal. 
+ * 		Version <1.1> Implemented the functions like in-order, pre-order and
+ * 					  post-order traversal techniques.
  */
 
 class Node{
@@ -199,4 +201,70 @@ public class MyBinaryTrees {
 		return false;
 	}
 	
+	
+	/**
+	 * This method calls the recursive in-order traversal method.
+	 */
+	public void inorder(){
+		inorder(root);
+	}
+	
+	
+	/**
+	 * this method traverses the binary tree using in-order traversal technique.
+	 * 
+	 * @param thisNode
+	 */
+	private void inorder(Node thisNode){
+		if(thisNode != null){
+			inorder(thisNode.getLeft());
+			System.out.print(thisNode.getData()+ " ");
+			inorder(thisNode.getRight());
+		}
+	}
+	
+	
+	/**
+	 * this method calls the recursive preorder traversal method.
+	 */
+	public void preorder(){
+		preorder(root);
+	}
+	
+	
+	/**
+	 * This method traverses the tree recursively using 
+	 * pre-order traversal technique.
+	 * 
+	 * @param thisNode
+	 */
+	private void preorder(Node thisNode){
+		if(thisNode != null){
+			System.out.print(thisNode.getData()+" ");
+			preorder(thisNode.getLeft());
+			preorder(thisNode.getRight());
+		}
+	}
+	
+	
+	/**
+	 * this method calls the recursive post-order traversal method
+	 */
+	public void postorder(){
+		postorder(root);
+	}
+	
+	
+	/**
+	 * This method traverses the tree using post-order traversal technique.
+	 * 
+	 * @param thisNode
+	 */
+	private void postorder(Node thisNode){
+		if(thisNode != null){
+			postorder(thisNode.getLeft());
+			postorder(thisNode.getRight());
+			System.out.print(thisNode.getData()+" ");
+		}
+	}
 }
